@@ -1,0 +1,12 @@
+************************************
+Performance Guide
+************************************
+
+.. ifconfig:: CONFIG_demo in ('Foundational')
+
+    .. include:: /devices/J7_Family/linux/Release_Specific_Kernel_Performance_Guide_SK.rst.inc
+
+.. ifconfig:: CONFIG_demo not in ('Foundational')
+
+    .. include:: /devices/J7_Family/linux/Release_Specific_Kernel_Performance_Guide.rst.inc
+

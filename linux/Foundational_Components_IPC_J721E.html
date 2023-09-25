@@ -1,0 +1,1085 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.5. IPC for J721E &mdash; Processor SDK Linux for J721e Documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Processor SDK Linux for J721e Documentation" href="../index.html"/>
+        <link rel="up" title="3. Foundational Components" href="Foundational_Components.html"/>
+        <link rel="next" title="3.6. Graphics and Display" href="Foundational_Components_Graphics.html"/>
+        <link rel="prev" title="3.4.4. Code Composer Studio" href="Foundational_Components/Tools/Code_Composer_Studio.html"/> 
+  <script src="https://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../devices/J7_Family/linux/index.html" class="icon icon-home"> Processor SDK Linux for J721e
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                09_00_00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">1. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devices/J7_Family/linux/Release_Specific.html">2. Release Specific</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Foundational_Components.html">3. Foundational Components</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Foundational_Components_U-Boot.html">3.1. U-Boot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Foundational_Components_Kernel.html">3.2. Kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Foundational_Components_Filesystem.html">3.3. Filesystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Foundational_Components_Tools.html">3.4. Tools</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.5. IPC for J721E</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typical-boot-flow-on-j721e-for-arm-linux-users">3.5.1. Typical Boot Flow on J721E for ARM Linux users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-started-with-ipc-linux-examples">3.5.2. Getting Started with IPC Linux Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#booting-remote-cores-from-linux-console-user-space">3.5.3. Booting Remote Cores from Linux console/User space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dma-memory-carveouts">3.5.4. DMA memory Carveouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changing-the-memory-map">3.5.5. Changing the Memory Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rpmsg-char-driver">3.5.6. RPMsg Char Driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ti-rpmsg-char-library">3.5.7. ti-rpmsg-char library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rpmsg-examples">3.5.8. RPMsg examples:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Foundational_Components_Graphics.html">3.6. Graphics and Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Foundational_Components_Multimedia_D5520_VXE384.html">3.7. Multimedia Video Codec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Foundational_Components_Virtualization.html">3.8. Virtualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Foundational_Components_ATF.html">3.9. ARM Trusted Firmware-A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Foundational_Components_OPTEE.html">3.10. OP-TEE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="How_to_Guides.html">4. How to Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Documentation_Tarball.html">5. Documentation Tarball</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../devices/J7_Family/linux/index.html">Processor SDK Linux for J721e</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../devices/J7_Family/linux/index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="Foundational_Components.html"><span class="section-number">3. </span>Foundational Components</a> &raquo;</li>
+      
+    <li><span class="section-number">3.5. </span>IPC for J721E</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ipc-for-j721e">
+<span id="foundational-components-ipc"></span><h1><span class="section-number">3.5. </span>IPC for J721E<a class="headerlink" href="#ipc-for-j721e" title="Permalink to this headline">¶</a></h1>
+<p>The J721E processors have Cortex-R5F, C66x DSP and C71x subsystems in addition to
+a dual core Cortex-A72 subsystem. Please refer to the J721E Technical Reference Manual for details.</p>
+<p>This article is geared toward J721E users that are running Linux on the Cortex
+A72 cores. The goal is to help users understand how to establish IPC communication
+with the C66x ,C71x DSP and R5F cores.</p>
+<p>There are many facets to this task: building, loading, debugging, memory
+sharing, etc. This article intends to take incremental steps toward
+understanding all of those pieces.</p>
+<div class="section" id="typical-boot-flow-on-j721e-for-arm-linux-users">
+<h2><span class="section-number">3.5.1. </span>Typical Boot Flow on J721E for ARM Linux users<a class="headerlink" href="#typical-boot-flow-on-j721e-for-arm-linux-users" title="Permalink to this headline">¶</a></h2>
+<p>J721E SOC’s have multiple processor cores - Cortex-A72, Cortex-R5F and DSP cores.</p>
+<p>The MCU R5F firmware runs device manager software (SciServer).
+The MCU R5F firmware (DM) is integrated as part of tispl.bin binary
+and is started early in the boot process, right after DDR initialization,
+by u-boot SPL running on MCU R5.</p>
+<p>The A72 typically runs a HLOS like Linux/Android. The C66x, C71x and R5F remote cores
+run No-OS or RTOS (FreeRTOS etc). In normal operation, the boot loader (U-Boot/SPL)
+boots and loads the A72 with the HLOS. The A72 then boots the C66x, C71x and R5F cores.</p>
+</div>
+<div class="section" id="getting-started-with-ipc-linux-examples">
+<h2><span class="section-number">3.5.2. </span>Getting Started with IPC Linux Examples<a class="headerlink" href="#getting-started-with-ipc-linux-examples" title="Permalink to this headline">¶</a></h2>
+<p>The figure below illustrates how the Remoteproc/RPMsg driver from the ARM Linux
+kernel communicates with the IPC driver on a remote processors (e.g. R5F)
+running RTOS.</p>
+<img alt="../_images/LinuxIPC_with_RTOS_Slave.png" src="../_images/LinuxIPC_with_RTOS_Slave.png" />
+<p>In order to setup IPC on remote cores, we provide some pre-built examples
+in the SDK package that can be run from ARM Linux.</p>
+<p>The remoteproc driver is hard-coded to look for specific files when
+loading the R5F, C66x and C71x cores. Here are the files it looks for on an J721E device:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+------------------+-----------------+----------------------+-----------------------+
+| Core Name        | RemoteProc Name | Description          | Firmware File Name    |
++==================+=================+======================+=======================+
+| C66x             | 4d80800000.dsp  | C66x core            | j7-c66_0-fw           |
++------------------+-----------------+----------------------+-----------------------+
+| C66x             | 4d81800000.dsp  | C66x core            | j7-c66_1-fw           |
++------------------+-----------------+----------------------+-----------------------+
+| C71x             | 64800000.c7x    | C71x core            | j7-c71_0-fw           |
++------------------+-----------------+----------------------+-----------------------+
+| C71x             | 65800000.c7x    | C71x core            | j7-c71_1-fw           |
++------------------+-----------------+----------------------+-----------------------+
+| R5F              | 41000000.r5f    | R5F core(MCU domain) | j7-mcu-r5f0_0-fw      |
++------------------+-----------------+----------------------+-----------------------+
+| R5F              | 41400000.r5f    | R5F core(MCU domain) | j7-mcu-r5f0_1-fw      |
++------------------+-----------------+----------------------+-----------------------+
+| R5F              | 5c00000.r5f     | R5F core(MAIN domain)| j7-main-r5f0_0-fw     |
++------------------+-----------------+----------------------+-----------------------+
+| R5F              | 5d00000.r5f     | R5F core(MAIN domain)| j7-main-r5f0_1-fw     |
++------------------+-----------------+----------------------+-----------------------+
+| R5F              | 5e00000.r5f     | R5F core(MAIN domain)| j7-main-r5f1_0-fw     |
++------------------+-----------------+----------------------+-----------------------+
+| R5F              | 5f00000.r5f     | R5F core(MAIN domain)| j7-main-r5f1_1-fw     |
++------------------+-----------------+----------------------+-----------------------+
+</pre></div>
+</div>
+<p>Generally on a target file system the above files are soft linked to the
+intended executable FW files:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>root@j721e-evm:~# ls -l /lib/firmware/
+lrwxrwxrwx 1 root root      69 Mar  9  2018 j7-c66_0-fw -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_c66xdsp_1_release_strip.xe66
+lrwxrwxrwx 1 root root      76 Mar  9  2018 j7-c66_0-fw-sec -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_c66xdsp_1_release_strip.xe66.signed
+lrwxrwxrwx 1 root root      69 Mar  9  2018 j7-c66_1-fw -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_c66xdsp_2_release_strip.xe66
+lrwxrwxrwx 1 root root      76 Mar  9  2018 j7-c66_1-fw-sec -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_c66xdsp_2_release_strip.xe66.signed
+lrwxrwxrwx 1 root root      65 Mar  9  2018 j7-c71_0-fw -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_c7x_1_release_strip.xe71
+lrwxrwxrwx 1 root root      72 Mar  9  2018 j7-c71_0-fw-sec -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_c7x_1_release_strip.xe71.signed
+lrwxrwxrwx 1 root root      65 Mar  9  2018 j7-main-r5f0_0-fw -&gt; /lib/firmware/ti-eth/j721e/app_remoteswitchcfg_server_strip.xer5f
+lrwxrwxrwx 1 root root      72 Mar  9  2018 j7-main-r5f0_0-fw-sec -&gt; /lib/firmware/ti-eth/j721e/app_remoteswitchcfg_server_strip.xer5f.signed
+lrwxrwxrwx 1 root root      67 Mar  9  2018 j7-main-r5f0_1-fw -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_mcu2_1_release_strip.xer5f
+lrwxrwxrwx 1 root root      74 Mar  9  2018 j7-main-r5f0_1-fw-sec -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_mcu2_1_release_strip.xer5f.signed
+lrwxrwxrwx 1 root root      67 Mar  9  2018 j7-main-r5f1_0-fw -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_mcu3_0_release_strip.xer5f
+lrwxrwxrwx 1 root root      74 Mar  9  2018 j7-main-r5f1_0-fw-sec -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_mcu3_0_release_strip.xer5f.signed
+lrwxrwxrwx 1 root root      67 Mar  9  2018 j7-main-r5f1_1-fw -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_mcu3_1_release_strip.xer5f
+lrwxrwxrwx 1 root root      74 Mar  9  2018 j7-main-r5f1_1-fw-sec -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_mcu3_1_release_strip.xer5f.signed
+lrwxrwxrwx 1 root root      67 Mar  9  2018 j7-mcu-r5f0_0-fw -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_testb_mcu1_0_release_strip.xer5f
+lrwxrwxrwx 1 root root      67 Mar  9  2018 j7-mcu-r5f0_1-fw -&gt; /lib/firmware/ti-ipc/j721e/ipc_echo_test_mcu1_1_release_strip.xer5f
+</pre></div>
+</div>
+<p>For updating MCU (DM) R5F firmware binary, tispl.bin needs to be recompiled with the new firmware binary as mentioned below :</p>
+<ol class="arabic simple">
+<li><p>Go to linux installer and replace the existing R5F MCU (DM) firmware binary with the new one</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>host#  cp &lt;path_to_new_fw_binary&gt;/ipc_echo_testb_freertos_mcu1_0_release.xer5f &lt;path_to_linux_installer&gt;/board-support/prebuilt-images/ti-dm/j721e/ipc_echo_testb_mcu1_0_release_strip.xer5f
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Recompile u-boot to regenerate tispl.bin using the top level makefile.</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>host# make u-boot
+</pre></div>
+</div>
+<p>Please refer to <a class="reference external" href="../../Overview/Top_Level_Makefile.html">Top-Level Makefile</a> for more details on Top Level makefile.</p>
+<ol class="arabic simple">
+<li><p>Replace the updated tispl.bin containing new R5F firmware binary in the boot partition of sdcard and reboot</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>host# sudo cp board-support/u-boot_build/A72/tispl.bin  /media/$USER/boot
+</pre></div>
+</div>
+</div>
+<div class="section" id="booting-remote-cores-from-linux-console-user-space">
+<span id="booting-remote-cores-from-linux-console"></span><h2><span class="section-number">3.5.3. </span>Booting Remote Cores from Linux console/User space<a class="headerlink" href="#booting-remote-cores-from-linux-console-user-space" title="Permalink to this headline">¶</a></h2>
+<p>To reload a remote core with new executables, please follow the below steps.</p>
+<p>First, identify the remotproc node associated with the remote core:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>root@j721e-evm:~# head /sys/class/remoteproc/remoteproc*/name
+==&gt; /sys/class/remoteproc/remoteproc0/name &lt;==
+4d80800000.dsp
+
+==&gt; /sys/class/remoteproc/remoteproc1/name &lt;==
+4d81800000.dsp
+
+==&gt; /sys/class/remoteproc/remoteproc10/name &lt;==
+b00c000.txpru
+
+==&gt; /sys/class/remoteproc/remoteproc11/name &lt;==
+b134000.pru
+
+==&gt; /sys/class/remoteproc/remoteproc12/name &lt;==
+b104000.rtu
+
+==&gt; /sys/class/remoteproc/remoteproc13/name &lt;==
+5d00000.r5f
+
+==&gt; /sys/class/remoteproc/remoteproc14/name &lt;==
+b10a000.txpru
+
+==&gt; /sys/class/remoteproc/remoteproc15/name &lt;==
+b138000.pru
+
+==&gt; /sys/class/remoteproc/remoteproc16/name &lt;==
+b106000.rtu
+
+==&gt; /sys/class/remoteproc/remoteproc17/name &lt;==
+b10c000.txpru
+
+==&gt; /sys/class/remoteproc/remoteproc18/name &lt;==
+5e00000.r5f
+
+==&gt; /sys/class/remoteproc/remoteproc19/name &lt;==
+5f00000.r5f
+
+==&gt; /sys/class/remoteproc/remoteproc2/name &lt;==
+64800000.dsp
+
+==&gt; /sys/class/remoteproc/remoteproc3/name &lt;==
+41000000.r5f
+
+==&gt; /sys/class/remoteproc/remoteproc4/name &lt;==
+5c00000.r5f
+
+==&gt; /sys/class/remoteproc/remoteproc5/name &lt;==
+b034000.pru
+
+==&gt; /sys/class/remoteproc/remoteproc6/name &lt;==
+b004000.rtu
+
+==&gt; /sys/class/remoteproc/remoteproc7/name &lt;==
+b00a000.txpru
+
+==&gt; /sys/class/remoteproc/remoteproc8/name &lt;==
+b038000.pru
+
+==&gt; /sys/class/remoteproc/remoteproc9/name &lt;==
+b006000.rtu
+</pre></div>
+</div>
+<p>Then, use the sysfs interface to stop the remote core. For example, to stop the Main R5F0</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>root@j721e-evm:~# echo stop &gt; /sys/class/remoteproc/remoteproc4/state
+[  277.626160] remoteproc remoteproc4: stopped remote processor 5c00000.r5f
+</pre></div>
+</div>
+<p>If needed, update the firmware symbolic link to point to a new firmware:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>root@j721e-evm:/lib/firmware# ln -sf /lib/firmware/ti-ipc/j721e/ipc_echo_test_mcu2_1_release_strip.xer5f j7-main-r5f0_1-fw
+</pre></div>
+</div>
+<p>Finally, use the sysfs interface to start the remote core:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>root@j721e-evm:~# echo start &gt; /sys/class/remoteproc/remoteproc4/state
+[  311.633427] remoteproc remoteproc4: powering up 5c00000.r5f
+[  311.639692] remoteproc remoteproc4: Booting fw image j7-main-r5f0_0-fw, size 691508
+[  311.655007] rproc-virtio rproc-virtio.16.auto: assigned reserved memory node r5f-dma-memory@a2000000
+[  311.664718] virtio_rpmsg_bus virtio4: rpmsg host is online
+[  311.672389] rproc-virtio rproc-virtio.16.auto: registered virtio4 (type 7)
+[  311.680397] remoteproc remoteproc4: remote processor 5c00000.r5f is now up
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above process is for the gracful remote core shutdown and start. In some cases, graceful
+shutdown may not work. In such cases, it is recommended to put new firmwares in /lib/firmware
+location and do a reboot.</p>
+</div>
+</div>
+<div class="section" id="dma-memory-carveouts">
+<h2><span class="section-number">3.5.4. </span>DMA memory Carveouts<a class="headerlink" href="#dma-memory-carveouts" title="Permalink to this headline">¶</a></h2>
+<p>System memory is carved out for each remote processor core for IPC and for the
+remote processor’s code/data section needs. The default
+memory carveouts (DMA pools) are shown below.</p>
+<p>See the devicetree bindings documentation for more details: <a class="reference external" href="https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml?h=ti-linux-6.1.y">Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml</a></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+------------------+--------------------+---------+----------------------------+
+| Memory Section   | Physical Address   | Size    | Description                |
++==================+====================+=========+============================+
+| C6x Pool         | 0xa6000000         | 1MB     | IPC (Virtio/Vring buffers) |
++------------------+--------------------+---------+----------------------------+
+| C6x Pool         | 0xa6100000         | 15MB    | C6x externel code/data mem |
++------------------+--------------------+---------+----------------------------+
+| C6x Pool         | 0xa7000000         | 1MB     | IPC (Virtio/Vring buffers) |
++------------------+--------------------+---------+----------------------------+
+| C6x Pool         | 0xa7100000         | 15MB    | C6x externel code/data mem |
++------------------+--------------------+---------+----------------------------+
+| C7x Pool         | 0xa8000000         | 1MB     | IPC (Virtio/Vring buffers) |
++------------------+--------------------+---------+----------------------------+
+| C7x Pool         | 0xa8100000         | 15MB    | C7x externel code/data mem |
++------------------+--------------------+---------+----------------------------+
+| R5F(mcu) Pool    | 0xa0000000         | 1MB     | IPC (Virtio/Vring buffers) |
++------------------+--------------------+---------+----------------------------+
+| R5F(mcu) Pool    | 0xa0100000         | 15MB    | R5F externel code/data mem |
++------------------+--------------------+---------+----------------------------+
+| R5F(mcu) Pool    | 0xa1000000         | 1MB     | IPC (Virtio/Vring buffers) |
++------------------+--------------------+---------+----------------------------+
+| R5F(mcu) Pool    | 0xa1100000         | 15MB    | R5F externel code/data mem |
++------------------+--------------------+---------+----------------------------+
+| R5F(main) Pool   | 0xa2000000         | 1MB     | IPC (Virtio/Vring buffers) |
++------------------+--------------------+---------+----------------------------+
+| R5F(main) Pool   | 0xa2100000         | 15MB    | R5F externel code/data mem |
++------------------+--------------------+---------+----------------------------+
+| R5F(main) Pool   | 0xa3000000         | 1MB     | IPC (Virtio/Vring buffers) |
++------------------+--------------------+---------+----------------------------+
+| R5F(main) Pool   | 0xa3100000         | 15MB    | R5F externel code/data mem |
++------------------+--------------------+---------+----------------------------+
+| R5F(main) Pool   | 0xa4000000         | 1MB     | IPC (Virtio/Vring buffers) |
++------------------+--------------------+---------+----------------------------+
+| R5F(main) Pool   | 0xa4100000         | 15MB    | R5F externel code/data mem |
++------------------+--------------------+---------+----------------------------+
+| R5F(main) Pool   | 0xa5000000         | 1MB     | IPC (Virtio/Vring buffers) |
++------------------+--------------------+---------+----------------------------+
+| R5F(main) Pool   | 0xa5100000         | 15MB    | R5F externel code/data mem |
++------------------+--------------------+---------+----------------------------+
+
+
+root@j721e-evm:~# dmesg | grep Reserved
+[    0.000000] Reserved memory: created CMA memory pool at 0x00000008e0000000, size 512 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a0000000, size 1 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a0100000, size 15 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a1000000, size 1 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a1100000, size 15 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a2000000, size 1 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a2100000, size 15 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a3000000, size 1 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a3100000, size 15 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a4000000, size 1 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a4100000, size 15 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a5000000, size 1 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a5100000, size 15 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a6000000, size 1 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a6100000, size 15 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a7000000, size 1 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a7100000, size 15 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a8000000, size 1 MiB
+[    0.000000] Reserved memory: created DMA memory pool at 0x00000000a8100000, size 15 MiB
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The reserved memory sizes listed above are provided as a reference only and subject to change between releases. For latest memory reservations, please refer to the kernel device tree repository :
+‘<a class="reference external" href="https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi?h=ti-linux-6.1.y">https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi?h=ti-linux-6.1.y</a>’</p>
+</div>
+<p>By default the first 1MB of each pool is used for the Virtio and Vring buffers
+used to communicate with the remote processor core. The remaining carveout is
+used for the remote core external memory (program code, data, etc).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The resource table entity (which describes the system resources needed by
+the remote processor) needs to be at the beginning of the remote processor
+external memory section.</p>
+</div>
+<p>Sizes and locations for DMA memory carveouts might be updated, e.g. when custom
+firmware are used. For details on how to adjust the sizes and locations of the
+remote core pool carveouts, please see section <a class="reference internal" href="#changing-the-memory-map"><span class="std std-ref">Changing the Memory Map</span></a>.</p>
+</div>
+<div class="section" id="changing-the-memory-map">
+<span id="id1"></span><h2><span class="section-number">3.5.5. </span>Changing the Memory Map<a class="headerlink" href="#changing-the-memory-map" title="Permalink to this headline">¶</a></h2>
+<p>The address and size of the DMA memory carveouts needs to match with the MCU
+M4F and R5F external memory section sizes in their respective linker mapfiles.</p>
+<p>arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>reserved_memory: reserved-memory {
+        #address-cells = &lt;2&gt;;
+        #size-cells = &lt;2&gt;;
+        ranges;
+
+         /* global cma region */
+        linux,cma {
+                compatible = &quot;shared-dma-pool&quot;;
+                reusable;
+                size = &lt;0x00 0x20000000&gt;;
+                linux,cma-default;
+        };
+
+        secure_ddr: optee@9e800000 {
+                reg = &lt;0x00 0x9e800000 0x00 0x01800000&gt;;
+                alignment = &lt;0x1000&gt;;
+                no-map;
+        };
+
+        mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa0000000 0x00 0x100000&gt;;
+                no-map;
+        };
+
+        mcu_r5fss0_core0_memory_region: r5f-memory@a0100000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa0100000 0x00 0xf00000&gt;;
+                no-map;
+        };
+
+        mcu_r5fss0_core1_dma_memory_region: r5f-dma-memory@a1000000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa1000000 0x00 0x100000&gt;;
+                no-map;
+        };
+
+        mcu_r5fss0_core1_memory_region: r5f-memory@a1100000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa1100000 0x00 0xf00000&gt;;
+                no-map;
+        };
+
+        main_r5fss0_core0_dma_memory_region: r5f-dma-memory@a2000000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa2000000 0x00 0x100000&gt;;
+                no-map;
+        };
+
+        main_r5fss0_core0_memory_region: r5f-memory@a2100000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa2100000 0x00 0xf00000&gt;;
+                no-map;
+        };
+
+        main_r5fss0_core1_dma_memory_region: r5f-dma-memory@a3000000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa3000000 0x00 0x100000&gt;;
+                no-map;
+        };
+
+        main_r5fss0_core1_memory_region: r5f-memory@a3100000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa3100000 0x00 0xf00000&gt;;
+                no-map;
+        };
+
+        main_r5fss1_core0_dma_memory_region: r5f-dma-memory@a4000000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa4000000 0x00 0x100000&gt;;
+                no-map;
+        };
+
+        main_r5fss1_core0_memory_region: r5f-memory@a4100000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa4100000 0x00 0xf00000&gt;;
+                no-map;
+        };
+
+        main_r5fss1_core1_dma_memory_region: r5f-dma-memory@a5000000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa5000000 0x00 0x100000&gt;;
+                no-map;
+        };
+
+        main_r5fss1_core1_memory_region: r5f-memory@a5100000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa5100000 0x00 0xf00000&gt;;
+                no-map;
+        };
+
+        c66_1_dma_memory_region: c66-dma-memory@a6000000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa6000000 0x00 0x100000&gt;;
+                no-map;
+        };
+
+        c66_0_memory_region: c66-memory@a6100000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa6100000 0x00 0xf00000&gt;;
+                no-map;
+        };
+
+        c66_0_dma_memory_region: c66-dma-memory@a7000000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa7000000 0x00 0x100000&gt;;
+                no-map;
+        };
+
+        c66_1_memory_region: c66-memory@a7100000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa7100000 0x00 0xf00000&gt;;
+                no-map;
+        };
+
+        c71_0_dma_memory_region: c71-dma-memory@a8000000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa8000000 0x00 0x100000&gt;;
+                no-map;
+        };
+
+        c71_0_memory_region: c71-memory@a8100000 {
+                compatible = &quot;shared-dma-pool&quot;;
+                reg = &lt;0x00 0xa8100000 0x00 0xf00000&gt;;
+                no-map;
+        };
+
+        rtos_ipc_memory_region: ipc-memories@aa000000 {
+                reg = &lt;0x00 0xaa000000 0x00 0x01c00000&gt;;
+                alignment = &lt;0x1000&gt;;
+                no-map;
+        };
+};
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Be careful not to overlap carveouts!</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The reserved memory sizes listed above are provided as a reference only and subject to change between releases. For latest memory reservations, please refer to the kernel device tree repository :
+‘<a class="reference external" href="https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi?h=ti-linux-6.1.y">https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi?h=ti-linux-6.1.y</a>’</p>
+</div>
+</div>
+<div class="section" id="rpmsg-char-driver">
+<h2><span class="section-number">3.5.6. </span>RPMsg Char Driver<a class="headerlink" href="#rpmsg-char-driver" title="Permalink to this headline">¶</a></h2>
+<p>The below picture depicts the kernel driver components and the user space device
+model for using RPMsg Char driver for communicating with the remote processor.</p>
+<img alt="../_images/RPMsgstack-linux.png" src="../_images/RPMsgstack-linux.png" />
+<p>The RPMsg char driver exposes RPMsg endpoints to user-space processes. Multiple
+user-space applications can use one RPMsg device uniquely by requesting
+different interactions with the remote service. The RPMsg char driver supports
+the creation of multiple endpoints for each probed RPMsg char device, enabling
+the use of the same device for different instances.</p>
+<p class="rubric">RPMsg devices</p>
+<p>Each created endpoint device shows up as a single character device in /dev.</p>
+<p>The RPMsg bus sits on top of the VirtIO bus. Each virtio name service
+announcement message creates a new RPMsg device, which is supposed to bind to a
+RPMsg driver. RPMsg devices are created dynamically:</p>
+<p>The remote processor announces the existence of a remote RPMsg service by
+sending a name service announcement message containing the name of the service
+(i.e. name of the device), source and destination addresses. The message is
+handled by the RPMsg bus, which dynamically creates and registers an RPMsg
+device which represents the remote service. As soon as a relevant RPMsg driver
+is registered, it is immediately probed by the bus and the two sides can start
+exchanging messages.</p>
+<p class="rubric">The control interface</p>
+<p>The RPMsg char driver provides control interface (in the form of a character
+device under /dev/rpmsg_ctrlX) allowing user-space to export an endpoint
+interface for each exposed endpoint. The control interface provides a
+dedicated ioctl to create an endpoint device.</p>
+</div>
+<div class="section" id="ti-rpmsg-char-library">
+<h2><span class="section-number">3.5.7. </span>ti-rpmsg-char library<a class="headerlink" href="#ti-rpmsg-char-library" title="Permalink to this headline">¶</a></h2>
+<p>The ti-rpmsg-char package is located at the <cite>ti-rpmsg-char git repo
+&lt;https://git.ti.com/cgit/rpmsg/ti-rpmsg-char&gt;</cite>.</p>
+<p>A thin userspace rpmsg char library is provided. The library abstracts the rpmsg
+char driver usage from userspace. This library provides an easy means to
+identify and open rpmsg character devices created by the kernel rpmsg-char
+driver.</p>
+<p>This library support TI K3 family of devices (i.e AM65x, AM64x, AM62x, AM62Ax,
+J784S4, J721S2, J721E, and J7200 SoCs).</p>
+<p>The library provides 4 basic APIs wrapping all the rpmsg char driver calls.
+<a class="reference external" href="https://git.ti.com/cgit/rpmsg/ti-rpmsg-char/tree/include/ti_rpmsg_char.h">Please check documentation in ‘include/ti_rpmsg_char.h’ for details.</a>.</p>
+<dl class="simple">
+<dt>rpmsg_char_init()</dt><dd><p>This function checks that the needed kernel drivers (remoteproc. rpmsg,
+virtio) are installed and accessible from the user space. Further it
+also checks the SoC device supports the requested remote processor.</p>
+</dd>
+<dt>rpmsg_char_exit()</dt><dd><p>This function finalizes and performs all the de-initialization and any
+cleanup on the library. This is the last function that needs to be invoked
+after all usage is done as part of the application’s cleanup. This only need
+to be invoked once in an application, there is no reference counting. The
+function also needs to be invoked in any application’s signal handlers to
+perform the necessary cleanup of stale rpmsg endpoint devices.</p>
+</dd>
+<dt>rpmsg_char_open()</dt><dd><p>Function to create and access a rpmsg endpoint device for a given rpmsg
+device.</p>
+</dd>
+<dt>rpmsg_char_close()</dt><dd><p>Function to close and delete a previously created local endpoint</p>
+</dd>
+</dl>
+<p><a class="reference external" href="https://git.ti.com/cgit/rpmsg/ti-rpmsg-char/tree/include/rproc_id.h">All remote proc ids are defined in rproc_id.h</a></p>
+<p>The below table lists the device enumerations as defined in the rpmsg_char_library. The validity of the enumerations wrt J721E is also specified.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+------------------+--------------------+---------+-----------------------------------+
+| Enumeration ID   | Device Name        | Valid   | Description                       |
++==================+====================+=========+===================================+
+| R5F_MCU0_0       | 41000000.r5f       | Yes     | R5F core(MCU domain)              |
++------------------+--------------------+---------+------------+----------------------+
+| R5F_MCU0_1       | 41400000.r5f       | Yes     | R5F core(MCU domain)              |
++------------------+--------------------+---------+------------+----------------------+
+| R5F_MAIN0_0      | 5c00000.r5f        | Yes     | R5F core in Main Domain           |
++------------------+--------------------+---------+-----------------------------------+
+| R5F_MAIN0_1      | 5d00000.r5f        | Yes     | R5F core in Main Domain           |
++------------------+--------------------+---------+-----------------------------------+
+| R5F_MAIN1_0      | 5e00000.r5f        | Yes     | R5F core in Main Domain           |
++------------------+--------------------+---------+-----------------------------------+
+| R5F_MAIN1_1      | 5f00000.r5f        | Yes     | R5F core in Main Domain           |
++------------------+--------------------+---------+-----------------------------------+
+| DSP_C66_0        | 4d80800000.dsp     | Yes     | DSP core in Main Domain           |
++------------------+--------------------+---------+-----------------------------------+
+| DSP_C66_1        | 4d81800000.dsp     | Yes     | DSP core in Main Domain           |
++------------------+--------------------+---------+-----------------------------------+
+| DSP_c71_0        | 64800000.dsp       | Yes     | DSP core in Main Domain           |
++------------------+--------------------+---------+-----------------------------------+
+| DSP_c71_1        | 65800000.dsp       | Yes     | DSP core in Main Domain           |
++------------------+--------------------+---------+-----------------------------------+
+</pre></div>
+</div>
+</div>
+<div class="section" id="rpmsg-examples">
+<h2><span class="section-number">3.5.8. </span>RPMsg examples:<a class="headerlink" href="#rpmsg-examples" title="Permalink to this headline">¶</a></h2>
+<p class="rubric">RPMsg user space example</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These steps were tested on Ubuntu 18.04.
+Later versions of Ubuntu may need different steps</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>rpmsg_char_simple comes prepackaged in prebuilt SDK wic images (e.g. tisdk-default-image-j721s2-evm.wic.xz)
+that comes with the release and below example can be directly run (Step 6) if using the prebuilt wic images</p>
+</div>
+<p>Access source code in the git repo <a class="reference external" href="https://git.ti.com/cgit/rpmsg/ti-rpmsg-char">here</a>.
+rproc_id is defined at <a class="reference external" href="https://git.ti.com/cgit/rpmsg/ti-rpmsg-char/tree/include/rproc_id.h">include/rproc_id.h</a>.</p>
+<p>Build the Linux Userspace example for Linux RPMsg by following the steps
+in the top-level README:</p>
+<ol class="arabic simple">
+<li><p>Download the git repo</p></li>
+<li><p>Install GNU autoconf, GNU automake, GNU libtool, and v8 compiler as per the
+README</p></li>
+<li><p>Perform the Build Steps as per the README</p></li>
+</ol>
+<p>Linux RPMsg can be tested with prebuilt binaries that are packaged in the
+SDK wic image filesystem:</p>
+<ol class="arabic simple">
+<li><p>Copy the Linux RPMsg Userspace application from
+&lt;ti-rpmsg-char_repo&gt;/examples/rpmsg_char_simple into the board’s Linux
+filesystem.</p></li>
+<li><p>Ensure that the remote core symbolic link points to the desired binary file
+in /lib/firmware/ti-ipc/j7xx/. Update the symbolic link if needed. Reference
+section <a class="reference internal" href="#booting-remote-cores-from-linux-console"><span class="std std-ref">Booting Remote Cores from Linux console/User space</span></a> for more information.</p></li>
+<li><p>Run the example on the board:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Usage: rpmsg_char_simple [-r &lt;rproc_id&gt;] [-n &lt;num_msgs&gt;] [-d &lt;rpmsg_dev_name] [-p &lt;remote_endpt]
+    Defaults: rproc_id: 0 num_msgs: 100 rpmsg_dev_name: NULL remote_endpt: 14
+
+For remote proc ids, please refer to : &#39;https://git.ti.com/cgit/rpmsg/ti-rpmsg-char/tree/include/rproc_id.h&#39;
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># MCU R5F&lt;-&gt;A72_0 IPC
+root@j721e-evm:~# rpmsg_char_simple -r0 -n10
+Created endpt device rpmsg-char-0-920, fd = 4 port = 1025
+Exchanging 10 messages with rpmsg device ti.ipc4.ping-pong on rproc id 0 ...
+
+Sending message #0: hello there 0!
+Receiving message #0: hello there 0!
+Sending message #1: hello there 1!
+Receiving message #1: hello there 1!
+Sending message #2: hello there 2!
+Receiving message #2: hello there 2!
+Sending message #3: hello there 3!
+Receiving message #3: hello there 3!
+Sending message #4: hello there 4!
+Receiving message #4: hello there 4!
+Sending message #5: hello there 5!
+Receiving message #5: hello there 5!
+Sending message #6: hello there 6!
+Receiving message #6: hello there 6!
+Sending message #7: hello there 7!
+Receiving message #7: hello there 7!
+Sending message #8: hello there 8!
+Receiving message #8: hello there 8!
+Sending message #9: hello there 9!
+Receiving message #9: hello there 9!
+
+Communicated 10 messages successfully on rpmsg-char-0-920
+
+TEST STATUS: PASSED
+
+# R5F_MAIN0_1&lt;-&gt;A72_0 IPC
+root@j721e-evm:~# rpmsg_char_simple -r3 -n10
+Created endpt device rpmsg-char-3-925, fd = 4 port = 1025
+Exchanging 10 messages with rpmsg device ti.ipc4.ping-pong on rproc id 3 ...
+
+Sending message #0: hello there 0!
+Receiving message #0: hello there 0!
+Sending message #1: hello there 1!
+Receiving message #1: hello there 1!
+Sending message #2: hello there 2!
+Receiving message #2: hello there 2!
+Sending message #3: hello there 3!
+Receiving message #3: hello there 3!
+Sending message #4: hello there 4!
+Receiving message #4: hello there 4!
+Sending message #5: hello there 5!
+Receiving message #5: hello there 5!
+Sending message #6: hello there 6!
+Receiving message #6: hello there 6!
+Sending message #7: hello there 7!
+Receiving message #7: hello there 7!
+Sending message #8: hello there 8!
+Receiving message #8: hello there 8!
+Sending message #9: hello there 9!
+Receiving message #9: hello there 9!
+
+Communicated 10 messages successfully on rpmsg-char-3-925
+
+TEST STATUS: PASSED
+
+# C6x&lt;-&gt;A72_0 IPC
+root@j721e-evm:~# rpmsg_char_simple -r6 -n10
+Created endpt device rpmsg-char-6-929, fd = 4 port = 1025
+Exchanging 10 messages with rpmsg device ti.ipc4.ping-pong on rproc id 6 ...
+
+Sending message #0: hello there 0!
+Receiving message #0: hello there 0!
+Sending message #1: hello there 1!
+Receiving message #1: hello there 1!
+Sending message #2: hello there 2!
+Receiving message #2: hello there 2!
+Sending message #3: hello there 3!
+Receiving message #3: hello there 3!
+Sending message #4: hello there 4!
+Receiving message #4: hello there 4!
+Sending message #5: hello there 5!
+Receiving message #5: hello there 5!
+Sending message #6: hello there 6!
+Receiving message #6: hello there 6!
+Sending message #7: hello there 7!
+Receiving message #7: hello there 7!
+Sending message #8: hello there 8!
+Receiving message #8: hello there 8!
+Sending message #9: hello there 9!
+Receiving message #9: hello there 9!
+
+Communicated 10 messages successfully on rpmsg-char-6-929
+
+TEST STATUS: PASSED
+
+# C7x&lt;-&gt;A72_0 IPC
+root@j721e-evm:~# rpmsg_char_simple -r8 -n10
+Created endpt device rpmsg-char-8-927, fd = 4 port = 1025
+Exchanging 10 messages with rpmsg device ti.ipc4.ping-pong on rproc id 8 ...
+
+Sending message #0: hello there 0!
+Receiving message #0: hello there 0!
+Sending message #1: hello there 1!
+Receiving message #1: hello there 1!
+Sending message #2: hello there 2!
+Receiving message #2: hello there 2!
+Sending message #3: hello there 3!
+Receiving message #3: hello there 3!
+Sending message #4: hello there 4!
+Receiving message #4: hello there 4!
+Sending message #5: hello there 5!
+Receiving message #5: hello there 5!
+Sending message #6: hello there 6!
+Receiving message #6: hello there 6!
+Sending message #7: hello there 7!
+Receiving message #7: hello there 7!
+Sending message #8: hello there 8!
+Receiving message #8: hello there 8!
+Sending message #9: hello there 9!
+Receiving message #9: hello there 9!
+
+Communicated 10 messages successfully on rpmsg-char-8-927
+
+TEST STATUS: PASSED
+</pre></div>
+</div>
+<p class="rubric">RPMsg kernel space example</p>
+<p>The kernel space example is in the Linux Processor SDK under
+samples/rpmsg/rpmsg_client_sample.c</p>
+<dl>
+<dt>Build the kernel module rpmsg_client_sample:</dt><dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>rpmsg_client_sample comes prepackaged in prebuilt SDK wic images (e.g. tisdk-default-image-j721s2-evm.wic.xz)
+that comes with the release and below example can be directly run (Step 5) if using the prebuilt wic images</p>
+</div>
+<ol class="arabic simple">
+<li><p>Set up the kernel config to build the rpmsg client sample. Use menuconfig to
+verify Kernel hacking &gt; Sample kernel code &gt; Build rpmsg client sample is M:</p></li>
+</ol>
+</dd>
+</dl>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ make ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- distclean
+$ make ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- defconfig ti_arm64_prune.config
+$ make ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- menuconfig
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Make the kernel and modules. Multithreading with –j is optional:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ make ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- -j8
+</pre></div>
+</div>
+<p>Linux RPMsg can be tested with prebuilt binaries that are packaged in the
+SDK wic image filesystem:</p>
+<ol class="arabic simple">
+<li><p>Copy the Linux RPMsg kernel driver from
+&lt;Linux_SDK&gt;/board-support/linux-x.x.x/samples/rpmsg/rpmsg_client_sample.ko
+into the board’s Linux filesystem.</p></li>
+<li><p>Ensure that the remote core symbolic link points to the desired binary file
+in /lib/firmware/ti-ipc/j7xx/. Update the symbolic link if needed. Reference
+section <a class="reference internal" href="#booting-remote-cores-from-linux-console"><span class="std std-ref">Booting Remote Cores from Linux console/User space</span></a> for more information.</p></li>
+<li><p>Run the example on the board:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>root@j721e-evm:~# modprobe rpmsg_client_sample count=10
+[ 1441.103962] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: new channel: 0x401 -&gt; 0xd!
+[ 1441.112364] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: incoming msg 1 (src: 0xd)
+[ 1441.115950] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: new channel: 0x401 -&gt; 0xd!
+[ 1441.122109] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: incoming msg 2 (src: 0xd)
+[ 1441.130666] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: new channel: 0x401 -&gt; 0xd!
+[ 1441.138198] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: incoming msg 1 (src: 0xd)
+[ 1441.147073] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: new channel: 0x401 -&gt; 0xd!
+[ 1441.154716] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: incoming msg 3 (src: 0xd)
+[ 1441.164037] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: new channel: 0x401 -&gt; 0xd!
+[ 1441.171397] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: incoming msg 1 (src: 0xd)
+[ 1441.180450] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: new channel: 0x401 -&gt; 0xd!
+[ 1441.187887] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: incoming msg 2 (src: 0xd)
+[ 1441.196879] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: new channel: 0x401 -&gt; 0xd!
+[ 1441.204558] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: incoming msg 1 (src: 0xd)
+[ 1441.220377] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: incoming msg 4 (src: 0xd)
+[ 1441.229136] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: incoming msg 1 (src: 0xd)
+[ 1441.238574] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: incoming msg 2 (src: 0xd)
+[ 1441.246843] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: incoming msg 1 (src: 0xd)
+[ 1441.255107] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: incoming msg 3 (src: 0xd)
+[ 1441.263372] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: incoming msg 1 (src: 0xd)
+[ 1441.271633] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: incoming msg 2 (src: 0xd)
+[ 1441.279894] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: incoming msg 5 (src: 0xd)
+[ 1441.288151] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: incoming msg 2 (src: 0xd)
+[ 1441.296410] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: incoming msg 3 (src: 0xd)
+[ 1441.304674] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: incoming msg 2 (src: 0xd)
+[ 1441.312933] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: incoming msg 4 (src: 0xd)
+[ 1441.321191] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: incoming msg 2 (src: 0xd)
+[ 1441.329451] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: incoming msg 3 (src: 0xd)
+[ 1441.337709] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: incoming msg 6 (src: 0xd)
+[ 1441.345965] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: incoming msg 3 (src: 0xd)
+[ 1441.354225] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: incoming msg 4 (src: 0xd)
+[ 1441.362493] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: incoming msg 3 (src: 0xd)
+[ 1441.370770] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: incoming msg 5 (src: 0xd)
+[ 1441.379031] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: incoming msg 3 (src: 0xd)
+[ 1441.387289] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: incoming msg 4 (src: 0xd)
+[ 1441.395550] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: incoming msg 7 (src: 0xd)
+[ 1441.403808] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: incoming msg 4 (src: 0xd)
+[ 1441.412067] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: incoming msg 5 (src: 0xd)
+[ 1441.420325] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: incoming msg 4 (src: 0xd)
+[ 1441.428588] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: incoming msg 6 (src: 0xd)
+[ 1441.436846] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: incoming msg 4 (src: 0xd)
+[ 1441.445104] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: incoming msg 5 (src: 0xd)
+[ 1441.453361] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: incoming msg 8 (src: 0xd)
+[ 1441.461619] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: incoming msg 5 (src: 0xd)
+[ 1441.469876] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: incoming msg 6 (src: 0xd)
+[ 1441.478134] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: incoming msg 5 (src: 0xd)
+[ 1441.486401] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: incoming msg 7 (src: 0xd)
+[ 1441.494667] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: incoming msg 5 (src: 0xd)
+[ 1441.502925] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: incoming msg 6 (src: 0xd)
+[ 1441.511184] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: incoming msg 9 (src: 0xd)
+[ 1441.519443] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: incoming msg 6 (src: 0xd)
+[ 1441.527702] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: incoming msg 7 (src: 0xd)
+[ 1441.535959] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: incoming msg 6 (src: 0xd)
+[ 1441.544218] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: incoming msg 8 (src: 0xd)
+[ 1441.552480] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: incoming msg 6 (src: 0xd)
+[ 1441.560740] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: incoming msg 7 (src: 0xd)
+[ 1441.568996] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: incoming msg 10 (src: 0xd)
+[ 1441.577333] rpmsg_client_sample virtio0.ti.ipc4.ping-pong.-1.13: goodbye!
+[ 1441.584108] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: incoming msg 7 (src: 0xd)
+[ 1441.592365] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: incoming msg 8 (src: 0xd)
+[ 1441.600624] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: incoming msg 7 (src: 0xd)
+[ 1441.608887] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: incoming msg 9 (src: 0xd)
+[ 1441.617152] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: incoming msg 7 (src: 0xd)
+[ 1441.625412] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: incoming msg 8 (src: 0xd)
+[ 1441.633797] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: incoming msg 8 (src: 0xd)
+[ 1441.642070] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: incoming msg 9 (src: 0xd)
+[ 1441.650332] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: incoming msg 8 (src: 0xd)
+[ 1441.658594] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: incoming msg 10 (src: 0xd)
+[ 1441.666931] rpmsg_client_sample virtio1.ti.ipc4.ping-pong.-1.13: goodbye!
+[ 1441.673715] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: incoming msg 8 (src: 0xd)
+[ 1441.681972] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: incoming msg 9 (src: 0xd)
+[ 1441.690232] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: incoming msg 9 (src: 0xd)
+[ 1441.698496] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: incoming msg 10 (src: 0xd)
+[ 1441.706848] rpmsg_client_sample virtio2.ti.ipc4.ping-pong.-1.13: goodbye!
+[ 1441.713632] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: incoming msg 9 (src: 0xd)
+[ 1441.721889] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: incoming msg 9 (src: 0xd)
+[ 1441.730147] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: incoming msg 10 (src: 0xd)
+[ 1441.738488] rpmsg_client_sample virtio3.ti.ipc4.ping-pong.-1.13: goodbye!
+[ 1441.745265] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: incoming msg 10 (src: 0xd)
+[ 1441.753598] rpmsg_client_sample virtio5.ti.ipc4.ping-pong.-1.13: goodbye!
+[ 1441.760373] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: incoming msg 10 (src: 0xd)
+[ 1441.768842] rpmsg_client_sample virtio6.ti.ipc4.ping-pong.-1.13: goodbye!
+[ 1441.775638] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: incoming msg 10 (src: 0xd)
+[ 1441.783976] rpmsg_client_sample virtio7.ti.ipc4.ping-pong.-1.13: goodbye!
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Foundational_Components_Graphics.html" class="btn btn-neutral float-right" title="3.6. Graphics and Display" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Foundational_Components/Tools/Code_Composer_Studio.html" class="btn btn-neutral" title="3.4.4. Code Composer Studio" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="http://www.ti.com/corp/docs/legal/copyright.shtml">&copy; Copyright 1995-2023</a>, Texas Instruments Incorporated. All rights reserved. <br>
+      <a href="http://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="http://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="http://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="http://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'09_00_00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>
